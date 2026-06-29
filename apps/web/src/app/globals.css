@@ -1,0 +1,177 @@
+:root {
+  /* Vibrant Color Palette */
+  --primary-hue: 245;
+  --primary: hsl(var(--primary-hue), 85%, 55%);
+  --primary-hover: hsl(var(--primary-hue), 85%, 45%);
+  --secondary: hsl(325, 85%, 55%);
+  --success: hsl(150, 85%, 40%);
+  --warning: hsl(40, 95%, 50%);
+  --danger: hsl(355, 85%, 55%);
+  
+  /* Light Theme Defaults */
+  --background: hsl(220, 20%, 97%);
+  --surface: hsl(0, 0%, 100%);
+  --surface-hover: hsl(220, 20%, 95%);
+  --text-main: hsl(220, 20%, 10%);
+  --text-muted: hsl(220, 20%, 40%);
+  --border: hsl(220, 20%, 90%);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: hsl(220, 20%, 5%);
+    --surface: hsl(220, 20%, 10%);
+    --surface-hover: hsl(220, 20%, 15%);
+    --text-main: hsl(220, 20%, 95%);
+    --text-muted: hsl(220, 20%, 65%);
+    --border: hsl(220, 20%, 15%);
+    --glass-bg: rgba(15, 15, 20, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--background);
+  color: var(--text-main);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+p { margin: 0 0 1rem 0; line-height: 1.6; color: var(--text-muted); }
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(var(--primary-hue), 85%, 55%, 0.39);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--primary-hue), 85%, 55%, 0.23);
+  filter: brightness(110%);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Input Fields */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.input-field {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary-hue), 85%, 55%, 0.2);
+}
+
+/* Micro-animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Dynamic Gradients for backgrounds */
+.bg-gradient-mesh {
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(var(--primary-hue), 85%, 55%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(325, 85%, 55%, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+}
