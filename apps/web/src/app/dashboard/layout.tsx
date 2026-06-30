@@ -14,16 +14,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   ];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--background)' }}>
+    <div className="dashboard-layout">
       {/* Sidebar */}
-      <aside style={{
-        width: '260px',
-        background: 'var(--surface)',
-        borderRight: '1px solid var(--border)',
-        padding: '2rem 1.5rem',
-        display: 'flex',
-        flexDirection: 'column'
-      }}>
+      <aside className="dashboard-sidebar">
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -81,7 +74,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main Content Area */}
-      <main style={{ flex: 1, padding: '2rem 3rem', overflowY: 'auto' }}>
+      <main className="dashboard-main">
         {children}
       </main>
     </div>

@@ -175,3 +175,65 @@ p { margin: 0 0 1rem 0; line-height: 1.6; color: var(--text-muted); }
     radial-gradient(at 100% 0%, hsla(325, 85%, 55%, 0.15) 0px, transparent 50%);
   background-attachment: fixed;
 }
+
+/* Dashboard Layout Responsive */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.dashboard-sidebar {
+  width: 260px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 2rem 3rem;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .dashboard-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    height: auto;
+  }
+  .dashboard-sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .dashboard-sidebar nav a {
+    flex: 1;
+    min-width: 140px;
+  }
+  .dashboard-main {
+    padding: 1rem;
+  }
+  .dashboard-sidebar > div:first-child {
+    margin-bottom: 1rem !important;
+  }
+  .dashboard-sidebar > div:last-child {
+    margin-top: 1rem !important;
+  }
+  
+  /* Tables shouldn't overflow the screen */
+  .dashboard-main table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
