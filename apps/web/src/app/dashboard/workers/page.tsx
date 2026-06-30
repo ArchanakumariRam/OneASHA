@@ -7,7 +7,7 @@ export default function WorkersPage() {
   const [workers, setWorkers] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/workers')
+    fetch('https://oneasha-backend.onrender.com/api/workers')
       .then(res => res.json())
       .then(data => {
         // Map backend User models to frontend display
@@ -37,7 +37,7 @@ export default function WorkersPage() {
     };
 
     try {
-      const res = await fetch('http://localhost:4000/api/workers', {
+      const res = await fetch('https://oneasha-backend.onrender.com/api/workers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newWorker)

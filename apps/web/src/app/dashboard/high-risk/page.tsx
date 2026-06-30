@@ -8,7 +8,7 @@ export default function HighRiskPage() {
   const [toast, setToast] = useState('');
 
   const fetchPatients = () => {
-    fetch('http://localhost:4000/api/patients')
+    fetch('https://oneasha-backend.onrender.com/api/patients')
       .then(res => res.json())
       .then(data => {
         const formatted = data.map((p: any) => ({
@@ -35,7 +35,7 @@ export default function HighRiskPage() {
     
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:4000/api/interventions', {
+      const res = await fetch('https://oneasha-backend.onrender.com/api/interventions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ patientId: selectedPatient.fullId, notes, followUpDate })
