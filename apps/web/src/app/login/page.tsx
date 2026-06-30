@@ -49,6 +49,12 @@ export default function LoginPage() {
             <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem' }}>Welcome Back</h2>
             <p style={{ fontSize: '0.875rem' }}>Login to your OneASHA account</p>
           </div>
+          
+          <div style={{ backgroundColor: 'var(--surface-hover)', padding: '1rem', borderRadius: '0.5rem', marginBottom: '1.5rem', fontSize: '0.875rem', textAlign: 'center', border: '1px dashed var(--border)' }}>
+            <strong>Demo Admin Access:</strong><br/>
+            Username: <code>admin</code><br/>
+            Password: <code>admin</code>
+          </div>
 
           {error && (
             <div style={{ backgroundColor: '#fee2e2', color: '#b91c1c', padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1rem', fontSize: '0.875rem', textAlign: 'center' }}>
