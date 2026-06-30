@@ -7,16 +7,38 @@ import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate login network request
-    setTimeout(() => {
-      setLoading(false);
-      // In a real app we'd redirect to a protected dashboard route
+    setError('');
+    
+    try {
+      const res = await fetch('https://oneasha-backend.onrender.com/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, password })
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || 'Login failed');
+      }
+      
+      // Store user role to check authorization
+      localStorage.setItem('user', JSON.stringify(data));
+      
+      // Redirect to dashboard
       router.push('/dashboard');
-    }, 1500);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -28,14 +50,22 @@ export default function LoginPage() {
             <p style={{ fontSize: '0.875rem' }}>Login to your OneASHA account</p>
           </div>
 
+          {error && (
+            <div style={{ backgroundColor: '#fee2e2', color: '#b91c1c', padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1rem', fontSize: '0.875rem', textAlign: 'center' }}>
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleLogin}>
             <div className="input-group">
-              <label htmlFor="phone">Phone Number</label>
+              <label htmlFor="phone">Username or Phone Number</label>
               <input 
-                type="tel" 
+                type="text" 
                 id="phone" 
                 className="input-field" 
-                placeholder="+91 98765 43210" 
+                placeholder="admin or +91 98765 43210" 
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required 
               />
             </div>
@@ -47,6 +77,8 @@ export default function LoginPage() {
                 id="password" 
                 className="input-field" 
                 placeholder="••••••••" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required 
               />
             </div>
