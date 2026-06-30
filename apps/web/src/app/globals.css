@@ -212,13 +212,11 @@ p { margin: 0 0 1rem 0; line-height: 1.6; color: var(--text-muted); }
     height: auto;
   }
   .dashboard-sidebar nav {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.5rem;
   }
   .dashboard-sidebar nav a {
-    flex: 1;
-    min-width: 140px;
+    width: 100%;
   }
   .dashboard-main {
     padding: 1rem;
